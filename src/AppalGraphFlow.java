@@ -1,7 +1,11 @@
+import cern.colt.matrix.DoubleMatrix1D;
+import cern.colt.matrix.impl.SparseDoubleMatrix1D;
+import cern.colt.matrix.impl.SparseDoubleMatrix2D;
 import edu.uci.ics.jung.algorithms.layout.*;
 import edu.uci.ics.jung.algorithms.shortestpath.DijkstraShortestPath;
 import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
 import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.SparseMultigraph;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.DefaultModalGraphMouse;
 import edu.uci.ics.jung.visualization.control.ModalGraphMouse;
@@ -10,24 +14,20 @@ import org.apache.commons.collections15.Transformer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
+import java.util.List;
+
+import static edu.uci.ics.jung.algorithms.matrix.GraphMatrixOperations.graphToSparseMatrix;
 
 
 /**
  * Created by karab on 5/8/2017.
  */
-    public class SimpleGraphView {
+public class AppalGraphFlow {
     static Graph<String, Edge> appalRoutes;
     int edgeCount = 0;
-    String currentRoute = "";
-    static HashMap<String, int[]> hm;
 
-
-    public SimpleGraphView() {
+    public AppalGraphFlow() {
         appalRoutes = new DirectedSparseMultigraph<>();
 
         // TEAL ROUTE
@@ -118,26 +118,7 @@ import java.util.Scanner;
         appalRoutes.addEdge(new Edge(1, "purple"), "ASUMainEntrance", "ASUSkywalk");
         appalRoutes.addEdge(new Edge(1, "purple"), "ASUSkywalk", "ASUPeacockHall");
 
-        // Create a hash map
-        hm = new HashMap();
-
-        //fill map
-
-        hm.put("tealCottagesBoone3", new int[]{26, 56, 41, 11});
-        hm.put("tealCottagesBoone2", new int[]{27, 57, 42, 12});
-        hm.put("tealCottagesBoone1", new int[]{28, 58, 43, 13});
-        hm.put("tealPoplarGroveRd", new int[]{32, 2, 47, 17});
-        hm.put("tealHighlandCommons", new int[]{33, 3, 48, 18});
-        hm.put("tealASUMainEntrance", new int[]{39, 9, 54, 24});
-        hm.put("tealASUSkywalk", new int[]{40, 10, 55, 25});
-        hm.put("tealASUPeacockHall", new int[]{16, 46, 31, 1});
-        hm.put("tealASUCAPBuilding", new int[]{17, 47, 32, 2});
-        hm.put("tealASUTechnologyCenter", new int[]{17, 47, 32, 2});
-        hm.put("tealASUConvocationCenter", new int[] {18, 48, 33, 3});
-        hm.put("tealAppSouthApartments", new int[]{19, 49, 34, 4});
-        hm.put("tealCasaRustica", new int[]{20, 50, 35, 5});
-
-        }
+    }
 
     // Creating the AppalCart route graph
     public static void main(String[] args) {
@@ -167,7 +148,7 @@ import java.util.Scanner;
                 return Color.black;
             }
         };
-        SimpleGraphView sgv = new SimpleGraphView(); //We create our graph in here
+        AppalGraphFlow sgv = new AppalGraphFlow(); //We create our graph in here
         KKLayout layout = new KKLayout(sgv.appalRoutes);
         VisualizationViewer<String, Edge> vv =
                 new VisualizationViewer<String, Edge>(layout);
@@ -191,73 +172,32 @@ import java.util.Scanner;
         // Wanted to implement pickSupport but having trouble with graphMouse implmentation, so
         //  console driven for now :(
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Where are you getting on? ");
-        String vStart = scanner.nextLine();
-        System.out.print("Where are you going?");
-        String vEnd = scanner.nextLine();
-        if (appalRoutes.containsVertex(vStart) && appalRoutes.containsVertex(vEnd))
-        {
-            sgv.getShortestPath(appalRoutes, vStart, vEnd);
-        }
-        else System.out.println("Please choose a stop listed on the graph");
-        return;
+
     }
 
 
-    public void getShortestPath(Graph g, String start, String end) {
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+    public static void getShortestPath(Graph g, String start, String end) {
         Transformer<Edge, Integer> wtTransformer = new Transformer<Edge, Integer>() {
             public Integer transform(Edge edge) {
-                String route = edge.id.replaceAll("[0-9]", "");
-                if (currentRoute == "") {
-                    currentRoute = route;
-                    return edge.weight;
-                }
-                else if (!currentRoute.equals(route)) {
-                    if (hm.get(route + g.getDest(edge)) != null) {
-                        int bestTime
-                                = getClosestTime(hm.get(route + g.getDest(edge)), cal.getTime());
-                        return edge.weight + bestTime;
-                    }
-                }
-                return 0;
+                return edge.weight;
             }
         };
-        DijkstraShortestPath<String, Edge> alg
-                = new DijkstraShortestPath(g, wtTransformer);
-        java.util.List<SimpleGraphView.Edge> l = alg.getPath(start, end);
+        DijkstraShortestPath<String, Edge> alg = new DijkstraShortestPath(g,
+                wtTransformer);
+        java.util.List<AppalGraphFlow.Edge> l = alg.getPath(start, end);
         Number dist = alg.getDistance(start, end);
-        System.out.println("The shortest path from"
-                + start.toString() + " to " + end.toString() + " is:");
+        System.out.println("The shortest path from" + start.toString() + " to " + end.toString() + " is:");
         System.out.println(start.toString());
         for(int i = 0; i < l.size(); i++)
         {
             Edge e = l.get(i);
             System.out.println(e.id.replaceAll("[0-9]", "")
-            + " route to " + g.getDest(e).toString());
+                    + " route to " + g.getDest(e).toString());
         }
         System.out.println("Approximate trip time is  " + dist + " minutes.");
     }
 
-    public int getClosestTime(int[] times, Date d){
 
-        int closest = 10000;
-        int comparison = 0;
-        for (int i = 0; i < times.length; i++)
-        {
-            if (times[i] < d.getMinutes())
-            {
-                comparison = 60 - d.getMinutes() + times[i];
-            }
-            else comparison = times[i] - d.getMinutes();
-            if (comparison < closest){
-                closest = comparison;
-            }
-        }
-        return  closest;
-    }
     class Edge {
         private int weight;
         private String id;
