@@ -8,8 +8,14 @@ import edu.uci.ics.jung.visualization.control.DefaultModalGraphMouse;
 import edu.uci.ics.jung.visualization.control.ModalGraphMouse;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import org.apache.commons.collections15.Transformer;
+import sun.security.provider.certpath.Vertex;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
+import java.util.Collection;
+import java.util.Scanner;
 
 
 /**
@@ -139,7 +145,6 @@ import java.awt.*;
                 return Color.black;
             }
         };
-        //Graph<String, Integer> appalRoutes = new SparseMultigraph<>();
         SimpleGraphView sgv = new SimpleGraphView(); //We create our graph in here
         KKLayout layout = new KKLayout(sgv.appalRoutes);
         VisualizationViewer<String, Edge> vv =
@@ -161,8 +166,22 @@ import java.awt.*;
         frame.pack();
         frame.setVisible(true);
 
-        getShortestPath(appalRoutes, "ASUPeacockHall", "MeadowViewDrGreenwayRd");
+        // Wanted to implement pickSupport but having trouble with graphMouse implmentation, so
+        //  console driven for now :(
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Where are you getting on? ");
+        String vStart = scanner.nextLine();
+        System.out.print("Where are you going?");
+        String vEnd = scanner.nextLine();
+        if (appalRoutes.containsVertex(vStart) && appalRoutes.containsVertex(vEnd))
+        {
+            getShortestPath(appalRoutes, vStart, vEnd);
+        }
+        else System.out.println("Please choose a stop listed on the graph");
+        return;
     }
+
 
     public static void getShortestPath(Graph g, String start, String end) {
         Transformer<Edge, Integer> wtTransformer = new Transformer<Edge, Integer>() {
@@ -186,21 +205,16 @@ import java.awt.*;
     }
     class Edge {
         private int weight;
-
         private String id;
-
         public Edge(int weight, String route) {
             this.id = route + edgeCount++; // This is defined in the outer class.
             this.weight = weight;
         }
-
         public int getWeight() {
             return weight;
         }
-
         public String toString() {
             return id;
         }
-
     }
 }
