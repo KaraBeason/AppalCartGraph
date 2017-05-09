@@ -1,4 +1,5 @@
 import edu.uci.ics.jung.algorithms.layout.*;
+import edu.uci.ics.jung.algorithms.shortestpath.DijkstraShortestPath;
 import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
@@ -9,15 +10,13 @@ import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import org.apache.commons.collections15.Transformer;
 import javax.swing.*;
 import java.awt.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 
 /**
  * Created by karab on 5/8/2017.
  */
     public class SimpleGraphView {
-    Graph<String, Edge> appalRoutes;
+    static Graph<String, Edge> appalRoutes;
     int edgeCount = 0;
 
     public SimpleGraphView() {
@@ -140,8 +139,7 @@ import java.util.ArrayList;
                 return Color.black;
             }
         };
-        Graph<String, Integer> appalRoutes = new SparseMultigraph<>();
-        System.out.println(appalRoutes.toString());
+        //Graph<String, Integer> appalRoutes = new SparseMultigraph<>();
         SimpleGraphView sgv = new SimpleGraphView(); //We create our graph in here
         KKLayout layout = new KKLayout(sgv.appalRoutes);
         VisualizationViewer<String, Edge> vv =
@@ -163,10 +161,32 @@ import java.util.ArrayList;
         frame.pack();
         frame.setVisible(true);
 
+        getShortestPath(appalRoutes, "ASUPeacockHall", "MeadowViewDrGreenwayRd");
     }
 
+    public static void getShortestPath(Graph g, String start, String end) {
+        Transformer<Edge, Integer> wtTransformer = new Transformer<Edge, Integer>() {
+            public Integer transform(Edge edge) {
+                return edge.weight;
+            }
+        };
+        DijkstraShortestPath<String, Edge> alg = new DijkstraShortestPath(g,
+                wtTransformer);
+        java.util.List<SimpleGraphView.Edge> l = alg.getPath(start, end);
+        Number dist = alg.getDistance(start, end);
+        System.out.println("The shortest path from" + start.toString() + " to " + end.toString() + " is:");
+        System.out.println(start.toString());
+        for(int i = 0; i < l.size(); i++)
+        {
+            Edge e = l.get(i);
+            System.out.println(e.id.replaceAll("[0-9]", "")
+            + " route to " + g.getDest(e).toString());
+        }
+        System.out.println("Approximate trip time is  " + dist + " minutes.");
+    }
     class Edge {
         private int weight;
+
         private String id;
 
         public Edge(int weight, String route) {
