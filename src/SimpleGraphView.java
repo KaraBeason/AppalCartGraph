@@ -1,282 +1,189 @@
 import edu.uci.ics.jung.algorithms.layout.*;
+import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
-import edu.uci.ics.jung.visualization.BasicVisualizationServer;
+import edu.uci.ics.jung.visualization.VisualizationViewer;
+import edu.uci.ics.jung.visualization.control.DefaultModalGraphMouse;
+import edu.uci.ics.jung.visualization.control.ModalGraphMouse;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import org.apache.commons.collections15.Transformer;
-
 import javax.swing.*;
-import javax.swing.SpringLayout;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Ellipse2D;
-import java.awt.peer.ScrollbarPeer;
-import java.util.Collection;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 
 /**
  * Created by karab on 5/8/2017.
  */
     public class SimpleGraphView {
-        Graph<String, String> appalRoutes;
+    Graph<String, Edge> appalRoutes;
+    int edgeCount = 0;
 
-        public SimpleGraphView() {
-            appalRoutes = new SparseMultigraph<>();
-//            appalRoutes.addVertex("CottagesBoone1");
-//            appalRoutes.addVertex("CottagesBoone2");
-//            appalRoutes.addVertex("CottagesBoone3");
-//            appalRoutes.addVertex("PoplarGroveRd");
-//            appalRoutes.addVertex("HighlandCommons");
-//            appalRoutes.addVertex("SnaggyMountain");
-//            appalRoutes.addVertex("StudioWest");
-//            appalRoutes.addVertex("PoplarPoint");
-//            appalRoutes.addVertex("SpeedwayNC105");
-//            appalRoutes.addVertex("HeritageCourt");
-//            appalRoutes.addVertex("PoplarHillDr");
-//            appalRoutes.addVertex("HighlandCrossing");
-//            appalRoutes.addVertex("NC105Crosswalk");
-//            appalRoutes.addVertex("CasaRustica");
-//            appalRoutes.addVertex("VeterinaryClinicWilsonDr");
-//            appalRoutes.addVertex("WinklersMeadow");
-//            appalRoutes.addVertex("WilsonDrNC105");
-//            appalRoutes.addVertex("GreenwayCommons");
-//            appalRoutes.addVertex("WinklersCreekRd");
-//            appalRoutes.addVertex("BooneCreekDr");
-//            appalRoutes.addVertex("GreenwayBusinessPrk");
-//            appalRoutes.addVertex("WataugaOppurtunities");
-//            appalRoutes.addVertex("MeadowviewDrGreenwayRd");
-//            appalRoutes.addVertex("CollegPlace");
-//            appalRoutes.addVertex("VillageAtMeadowView");
-//            appalRoutes.addVertex("GreenwayRdParkingLot");
-//            appalRoutes.addVertex("WalmartOppositeShelter");
-//            appalRoutes.addVertex("Applebees");
-//            appalRoutes.addVertex("WalmartShelter");
-//            appalRoutes.addVertex("MeadowviewDrWalgreens");
-//            appalRoutes.addVertex("WataugaMedical");
-//            appalRoutes.addVertex("StateFarmRd");
-//            appalRoutes.addVertex("BurgerKingBlowingRock");
-//            appalRoutes.addVertex("ASUAnnex");
-//            appalRoutes.addVertex("BooneHeights");
-//            appalRoutes.addVertex("BooneHeightsShoppingCntr");
-//            appalRoutes.addVertex("BooneTownHall");
-//            appalRoutes.addVertex("ChinaBuffet");
-//            appalRoutes.addVertex("ShadowlineRd");
-//            appalRoutes.addVertex("UniversityHall");
-//            appalRoutes.addVertex("ASUStateFarmLot");
-//            appalRoutes.addVertex("610StateFarmRd");
-//            appalRoutes.addVertex("IvyTerrace");
-//            appalRoutes.addVertex("PapaJohnsPizza");
-//            appalRoutes.addVertex("WataugaBuildingSupply");
-//            appalRoutes.addVertex("NC105ExtAzaleaDr");
-//            appalRoutes.addVertex("AppalachianPanhellenicHall");
-//            appalRoutes.addVertex("McDonaldsWellsFargo");
-//            appalRoutes.addVertex("KangarooExpress");
-//            appalRoutes.addVertex("HighlandAveFacultySt");
-//            appalRoutes.addVertex("HighlandAve");
-//            appalRoutes.addVertex("FacultySt");
-//            appalRoutes.addVertex("AppSouthApartments");
-//            appalRoutes.addVertex("ASUConvocationCenter");
-//            appalRoutes.addVertex("HornAve");
-//            appalRoutes.addVertex("HornWestPrkingLot");
-//            appalRoutes.addVertex("HornWestDr");
-//            appalRoutes.addVertex("BrownBrothers");
-//            appalRoutes.addVertex("HardinStASUConvocation");
-//            appalRoutes.addVertex("RedOnionCafe");
-//            appalRoutes.addVertex("ASUMainEntrance");
-//            appalRoutes.addVertex("ASUHoeyHallAwning");
-//            appalRoutes.addVertex("HowardStHardinStDanlBoone");
-//            appalRoutes.addVertex("KingStHillsideDr");
-//            appalRoutes.addVertex("CollegeStation");
-//            appalRoutes.addVertex("WoodCircle");
-//            appalRoutes.addVertex("ForestHillsDr");
-//            appalRoutes.addVertex("Old421DelmarSt");
-//            appalRoutes.addVertex("WataugaHighSchool");
-//            appalRoutes.addVertex("SpeedwayHess");
-//            appalRoutes.addVertex("HospitalityHouse");
-//            appalRoutes.addVertex("PhoenixComplex");
-//            appalRoutes.addVertex("BrookhollowRdBluebird");
-//            appalRoutes.addVertex("BrookhollowRdBamboo");
-//            appalRoutes.addVertex("BambooRd");
-//            appalRoutes.addVertex("Old421US421");
-//            appalRoutes.addVertex("BrookshireRdPark");
-//            appalRoutes.addVertex("IndustrialPark");
-//            appalRoutes.addVertex("MountaineerVillageApts");
-//            appalRoutes.addVertex("EastVillageSehlter");
-//            appalRoutes.addVertex("MeadowhillEstatesEntrance");
-//            appalRoutes.addVertex("KingStHardees");
-//            appalRoutes.addVertex("KingStFarthingSt");
-//            appalRoutes.addVertex("KingswoodApartments");
-//            appalRoutes.addVertex("KingStPharmacy");
-//            appalRoutes.addVertex("DepotStKingSt");
-//            appalRoutes.addVertex("WaterStKingSt");
-//            appalRoutes.addVertex("RamsRack");
-//            appalRoutes.addVertex("MillerIndustries");
-//            appalRoutes.addVertex("PinnacleDrOldBristol");
-//            appalRoutes.addVertex("HumanServiceCenter");
-//            appalRoutes.addVertex("HighCountryCondos");
-//            appalRoutes.addVertex("EdgecliffLn");
-//            appalRoutes.addVertex("OldWaterloo");
-//            appalRoutes.addVertex("HighlandHall");
-//            appalRoutes.addVertex("OakGroveRd");
-//            appalRoutes.addVertex("WataugaLawEnforcement");
-//            appalRoutes.addVertex("US421OldBristol");
-//            appalRoutes.addVertex("RiversStDepotSt");
-//            appalRoutes.addVertex("WalkerHall");
-//            appalRoutes.addVertex("RecCenter");
-//            appalRoutes.addVertex("LivingLearningCenter");
-//            appalRoutes.addVertex("MountaineerHall");
-//            appalRoutes.addVertex("ASUChildCare");
-//            appalRoutes.addVertex("WataugaCountyHumanServices");
-//            appalRoutes.addVertex("ASUTechnologyCenter");
-//            appalRoutes.addVertex("ASUCAPBuilding");
-//            appalRoutes.addVertex("ASUTrivetteHall");
-//            appalRoutes.addVertex("ASUEggersHall");
-//            appalRoutes.addVertex("NewlandHall");
-//            appalRoutes.addVertex("PeacockCircleLight");
-//            appalRoutes.addVertex("ASUPeacockHall");
-//            appalRoutes.addVertex("WalkerHall");
-//            appalRoutes.addVertex("RiversStDepotSt");
-//            appalRoutes.addVertex("WalkerHall");
-//            appalRoutes.addVertex("LivingLearningCenter");
-//            appalRoutes.addVertex("GreenwoodLot");
-//            appalRoutes.addVertex("BroyhillInn");
-//            appalRoutes.addVertex("BoyhillInnSouth");
-//            appalRoutes.addVertex("BrollHillInnEntrance");
-//            appalRoutes.addVertex("AppalachianHeights");
-//            appalRoutes.addVertex("ASUSkywalk");
-//            appalRoutes.addVertex("HardinStDauphBlan");
-//            appalRoutes.addVertex("OldBristolRdGilbertBarnes");
-//            appalRoutes.addVertex("GeorgeWilsonRd");
-//            appalRoutes.addVertex("HubBrownRd");
-//            appalRoutes.addVertex("KensingtonMeadows");
-//            appalRoutes.addVertex("CCCTISidewalk");
-//            appalRoutes.addVertex("CCCTINC105Bypass");
-//            appalRoutes.addVertex("WhiteOakRoad");
-//            appalRoutes.addVertex("WesthavenApartments");
-//            appalRoutes.addVertex("HodgesGapRd");
-//            appalRoutes.addVertex("UniversityHighlands");
+    public SimpleGraphView() {
+        appalRoutes = new DirectedSparseMultigraph<>();
 
-            // TEAL ROUTE
-            appalRoutes.addEdge("teal1", "CottagesBoone1", "CottagesBoone2");
-            appalRoutes.addEdge("teal2", "CottagesBoone2", "CottagesBoone3");
-            appalRoutes.addEdge("teal3", "CottagesBoone3", "PoplarGroveRd");
-            appalRoutes.addEdge("teal12", "PoplarGroveRd", "HighlandCommons");
-            appalRoutes.addEdge("teal4", "HighlandCommons", "CasaRustica");
-            appalRoutes.addEdge("teal5", "CasaRustica", "AppSouthApartments");
-            appalRoutes.addEdge("teal6", "AppSouthApartments", "ASUConvocationCenter");
-            appalRoutes.addEdge("teal7", "ASUConvocationCenter", "ASUMainEntrance");
-            appalRoutes.addEdge("teal8", "ASUMainEntrance", "ASUTechnologyCenter");
-            appalRoutes.addEdge("teal9", "ASUTechnologyCenter", "ASUSkywalk");
-            appalRoutes.addEdge("teal10", "ASUSkywalk", "ASUCAPBuilding");
-            appalRoutes.addEdge("teal11", "ASUCAPBuilding", "ASUPeacockHall");
+        // TEAL ROUTE
+        appalRoutes.addEdge(new Edge(1, "teal"), "CottagesBoone3", "CottagesBoone2");
+        appalRoutes.addEdge(new Edge(1, "teal"), "CottagesBoone2", "CottagesBoone1");
+        appalRoutes.addEdge(new Edge(6, "teal"), "CottagesBoone1", "PoplarGroveRd");
+        appalRoutes.addEdge(new Edge(1, "teal"), "PoplarGroveRd", "HighlandCommons");
+        appalRoutes.addEdge(new Edge(6, "teal"), "HighlandCommons", "ASUMainEntrance");
+        appalRoutes.addEdge(new Edge(1, "teal"), "ASUMainEntrance", "ASUSkywalk");
+        appalRoutes.addEdge(new Edge(3, "teal"), "ASUSkywalk", "ASUPeacockHall");
+        appalRoutes.addEdge(new Edge(1, "teal"), "ASUPeacockHall", "ASUCAPBuilding");
+        appalRoutes.addEdge(new Edge(1, "teal"), "ASUCAPBuilding", "ASUTechnologyCenter");
+        appalRoutes.addEdge(new Edge(1, "teal"), "ASUTechnologyCenter", "ASUConvocationCenter");
+        appalRoutes.addEdge(new Edge(1, "teal"), "ASUConvocationCenter", "AppSouthAparments");
+        appalRoutes.addEdge(new Edge(1, "teal"), "AppSouthAparments", "CasaRustica");
+        appalRoutes.addEdge(new Edge(6, "teal"), "CasaRustica", "CottagesBoone3");
 
-            // SILVER ROUTE
-            appalRoutes.addEdge("silver1", "CCCTINC105Bypass", "CCCTISidewalk");
-            appalRoutes.addEdge("silver2", "CCCTISidewalk", "WhiteOakRd");
-            appalRoutes.addEdge("silver3", "WhiteOakRd", "HighlandCommons");
-            appalRoutes.addEdge("silver4", "HighlandCommons", "SnaggyMountain");
-            appalRoutes.addEdge("silver5", "SnaggyMountain", "StudioWestApts");
-            appalRoutes.addEdge("silver6", "StudioWestApts", "HighlandCrossing");
-            appalRoutes.addEdge("silver7", "HighlandCrossing", "AppalachianPanhellenic");
-            appalRoutes.addEdge("silver8", "AppalachianPanhellenic", "ASUMainEntrance");
-            appalRoutes.addEdge("silver9", "ASUMainEntrance", "ASUSkywalk");
-            appalRoutes.addEdge("silver10", "ASUSkywalk", "ASUPeacockHall");
-            appalRoutes.addEdge("silver11", "ASUPeacockHall", "ASUCAPBuilding");
-            appalRoutes.addEdge("silver12", "ASUCAPBuilding", "ASUTechnologyCenter");
-            appalRoutes.addEdge("silver13", "ASUTechnologyCenter", "ASUConvocationCenter");
-            appalRoutes.addEdge("silver14", "ASUConvocationCenter", "AppSouthApartments");
-            appalRoutes.addEdge("silver15", "AppSouthApartments", "CasaRustica");
-            appalRoutes.addEdge("silver16", "CasaRustica", "NC105Crosswalk");
-            appalRoutes.addEdge("silver17", "NC105Crosswalk", "PoplarHillDr");
-            appalRoutes.addEdge("silver18", "HeritageCourt", "PoplarHillDr");
-            appalRoutes.addEdge("silver19", "HeritageCourt", "SpeedwayNC105");
-            appalRoutes.addEdge("silver20", "PoplarPoint", "SpeedwayNC105");
-            appalRoutes.addEdge("silver21", "PoplarPoint", "WesthavenApts");
-            appalRoutes.addEdge("silver22", "WesthavenApts", "CCCTINC105Bypass");
+        // SILVER ROUTE
+        appalRoutes.addEdge(new Edge(10, "silver"), "CCCTINC105Bypass", "CCCTISidewalk");
+        appalRoutes.addEdge(new Edge(10, "silver"), "CCCTISidewalk", "WhiteOakRd");
+        appalRoutes.addEdge(new Edge(10, "silver"), "WhiteOakRd", "HighlandCommons");
+        appalRoutes.addEdge(new Edge(10, "silver"), "HighlandCommons", "SnaggyMountain");
+        appalRoutes.addEdge(new Edge(10, "silver"), "SnaggyMountain", "StudioWestApts");
+        appalRoutes.addEdge(new Edge(10, "silver"), "StudioWestApts", "HighlandCrossing");
+        appalRoutes.addEdge(new Edge(10, "silver"), "HighlandCrossing", "AppalachianPanhellenic");
+        appalRoutes.addEdge(new Edge(10, "silver"), "AppalachianPanhellenic", "ASUMainEntrance");
+        appalRoutes.addEdge(new Edge(10, "silver"), "ASUMainEntrance", "ASUSkywalk");
+        appalRoutes.addEdge(new Edge(10, "silver"), "ASUSkywalk", "ASUPeacockHall");
+        appalRoutes.addEdge(new Edge(10, "silver"), "ASUPeacockHall", "ASUCAPBuilding");
+        appalRoutes.addEdge(new Edge(10, "silver"), "ASUCAPBuilding", "ASUTechnologyCenter");
+        appalRoutes.addEdge(new Edge(10, "silver"), "ASUTechnologyCenter", "ASUConvocationCenter");
+        appalRoutes.addEdge(new Edge(10, "silver"), "ASUConvocationCenter", "AppSouthApartments");
+        appalRoutes.addEdge(new Edge(10, "silver"), "AppSouthApartments", "CasaRustica");
+        appalRoutes.addEdge(new Edge(10, "silver"), "CasaRustica", "NC105Crosswalk");
+        appalRoutes.addEdge(new Edge(10, "silver"), "NC105Crosswalk", "PoplarHillDr");
+        appalRoutes.addEdge(new Edge(10, "silver"), "HeritageCourt", "PoplarHillDr");
+        appalRoutes.addEdge(new Edge(10, "silver"), "HeritageCourt", "SpeedwayNC105");
+        appalRoutes.addEdge(new Edge(10, "silver"), "PoplarPoint", "SpeedwayNC105");
+        appalRoutes.addEdge(new Edge(10, "silver"), "PoplarPoint", "WesthavenApts");
+        appalRoutes.addEdge(new Edge(10, "silver"), "WesthavenApts", "CCCTINC105Bypass");
 
-            // GOLD ROUTE
-            appalRoutes.addEdge("gold1", "BroyhillEvents", "AppalachianHeights");
-            appalRoutes.addEdge("gold2", "AppalachianHeights", "ASUAccessRd");
-            appalRoutes.addEdge("gold3", "ASUAccessRd", "ASUChildCare");
-            appalRoutes.addEdge("gold4", "ASUChildCare", "WataugaCountyHumanServices");
-            appalRoutes.addEdge("gold5", "WataugaCountyHumanServices", "WalkerHall");
-            appalRoutes.addEdge("gold6", "WalkerHall", "LivingLearningCenter");
-            appalRoutes.addEdge("gold7", "LivingLearningCenter", "ASUAccessRd");
-            appalRoutes.addEdge("gold26", "ASUAccessRd", "GreenwoodLot");
-            appalRoutes.addEdge("gold27", "GreenwoodLot", "BroyhillEvents");
-            appalRoutes.addEdge("gold8", "PeacockTrafficLight", "WalkerHall");
-            appalRoutes.addEdge("gold9", "PeacockTrafficLight", "ASUTrivetteHall");
-            appalRoutes.addEdge("gold10", "ASUTrivetteHall", "NewlandHall");
-            appalRoutes.addEdge("gold11", "NewlandHall", "ASUEggersHall");
-            appalRoutes.addEdge("gold12", "ASUEggersHall", "ASUJusticeHall");
-            appalRoutes.addEdge("gold13", "ASUJusticeHall", "ASUSkywalk");
-            appalRoutes.addEdge("gold14", "ASUSkywalk", "ASUMainEntrance");
-            appalRoutes.addEdge("gold15", "ASUMainEntrance", "ASUConvocationCenter");
-            appalRoutes.addEdge("gold16", "ASUConvocationCenter", "FacultySt");
-            appalRoutes.addEdge("gold17", "FacultySt", "HighlandAve");
-            appalRoutes.addEdge("gold18", "HighlandAve", "HardinStDauphBlanLn");
-            appalRoutes.addEdge("gold19", "HardinStDauphBlanLn", "ASUHoeyHallAwning");
-            appalRoutes.addEdge("gold20", "ASUHoeyHallAwning", "HowardStHardinStDanlBoone");
-            appalRoutes.addEdge("gold21", "HowardStHardinStDanlBoone", "ASUCollegeStStation");
-            appalRoutes.addEdge("gold22", "ASUCollegeStStation", "BooneTownHall");
-            appalRoutes.addEdge("gold23", "BooneTownHall", "DepotStKingSt");
-            appalRoutes.addEdge("gold24", "DepotStKingSt", "RiversStDepotSt");
-            appalRoutes.addEdge("gold25", "RiversStDepotSt", "WalkerHall");
+        // GOLD ROUTE
+        appalRoutes.addEdge(new Edge(10, "gold"), "BroyhillEvents", "AppalachianHeights");
+        appalRoutes.addEdge(new Edge(10, "gold"), "AppalachianHeights", "ASUAccessRd");
+        appalRoutes.addEdge(new Edge(10, "gold"), "ASUAccessRd", "ASUChildCare");
+        appalRoutes.addEdge(new Edge(10, "gold"), "ASUChildCare", "WataugaCountyHumanServices");
+        appalRoutes.addEdge(new Edge(10, "gold"), "WataugaCountyHumanServices", "WalkerHall");
+        appalRoutes.addEdge(new Edge(10, "gold"), "WalkerHall", "LivingLearningCenter");
+        appalRoutes.addEdge(new Edge(10, "gold"), "LivingLearningCenter", "ASUAccessRd");
+        appalRoutes.addEdge(new Edge(10, "gold"),  "ASUAccessRd", "GreenwoodLot");
+        appalRoutes.addEdge(new Edge(10, "gold"),  "GreenwoodLot", "BroyhillEvents");
+        appalRoutes.addEdge(new Edge(10, "gold"), "PeacockTrafficLight", "WalkerHall");
+        appalRoutes.addEdge(new Edge(10, "gold"),"PeacockTrafficLight", "ASUTrivetteHall");
+        appalRoutes.addEdge(new Edge(10, "gold"), "ASUTrivetteHall", "NewlandHall");
+        appalRoutes.addEdge(new Edge(10, "gold"), "NewlandHall", "ASUEggersHall");
+        appalRoutes.addEdge(new Edge(10, "gold"), "ASUEggersHall", "ASUJusticeHall");
+        appalRoutes.addEdge(new Edge(10, "gold"), "ASUJusticeHall", "ASUSkywalk");
+        appalRoutes.addEdge(new Edge(10, "gold"), "ASUSkywalk", "ASUMainEntrance");
+        appalRoutes.addEdge(new Edge(10, "gold"), "ASUMainEntrance", "ASUConvocationCenter");
+        appalRoutes.addEdge(new Edge(10, "gold"), "ASUConvocationCenter", "FacultySt");
+        appalRoutes.addEdge(new Edge(10, "gold"), "FacultySt", "HighlandAve");
+        appalRoutes.addEdge(new Edge(10, "gold"), "HighlandAve", "HardinStDauphBlanLn");
+        appalRoutes.addEdge(new Edge(10, "gold"), "HardinStDauphBlanLn", "ASUHoeyHallAwning");
+        appalRoutes.addEdge(new Edge(10, "gold"), "ASUHoeyHallAwning", "HowardStHardinStDanlBoone");
+        appalRoutes.addEdge(new Edge(10, "gold"), "HowardStHardinStDanlBoone", "ASUCollegeStStation");
+        appalRoutes.addEdge(new Edge(10, "gold"), "ASUCollegeStStation", "BooneTownHall");
+        appalRoutes.addEdge(new Edge(10, "gold"), "BooneTownHall", "DepotStKingSt");
+        appalRoutes.addEdge(new Edge(10, "gold"), "DepotStKingSt", "RiversStDepotSt");
+        appalRoutes.addEdge(new Edge(10, "gold"), "RiversStDepotSt", "WalkerHall");
 
-            // PURPLE ROUTE
-            appalRoutes.addEdge("purple1", "ASUPeacockHall", "ASUCAPBuilding");
-            appalRoutes.addEdge("purple2", "ASUCAPBuilding", "ASUTechnologyCenter");
-            appalRoutes.addEdge("purple3", "ASUTechnologyCenter", "ASUConvocationCenter");
-            appalRoutes.addEdge("purple4", "ASUConvocationCenter", "HighlandAve");
-            appalRoutes.addEdge("purple5", "HighlandAve", "McDonaldsWellsFargo");
-            appalRoutes.addEdge("purple6", "McDonaldsWellsFargo", "WilsonDr");
-            appalRoutes.addEdge("purple7", "WilsonDr", "GreenwayCommons");
-            appalRoutes.addEdge("purple8", "GreenwayCommons", "GreenwayBusinessPark");
-            appalRoutes.addEdge("purple9", "GreenwayBusinessPark", "GreenwayRdParkingLot");
-            appalRoutes.addEdge("purple10", "GreenwayRdParkingLot", "MeadowViewDr");
-            appalRoutes.addEdge("purple11", "MeadowViewDr", "VillageAtMeadowView");
-            appalRoutes.addEdge("purple12", "VillageAtMeadowView", "MeadowViewDrAtWalgreens");
-            appalRoutes.addEdge("purple13", "MeadowViewDrAtWalgreens", "Applebees");
-            appalRoutes.addEdge("purple14", "Applebees", "VisitorsCenter");
-            appalRoutes.addEdge("purple15", "VisitorsCenter", "BooneTownHall");
-            appalRoutes.addEdge("purple16", "BooneTownHall", "ChinaBuffet");
-            appalRoutes.addEdge("purple17", "ChinaBuffet", "AppalachianPanhellenic");
-            appalRoutes.addEdge("purple18", "AppalachianPanhellenic", "KangarooExpress");
-            appalRoutes.addEdge("purple19", "KangarooExpress", "ASUMainEntrance");
-            appalRoutes.addEdge("purple20", "ASUMainEntrance", "ASUSkywalk");
-            appalRoutes.addEdge("purple21", "ASUSkywalk", "ASUPeacockHall");
+        // PURPLE ROUTE
+        appalRoutes.addEdge(new Edge(10, "purple"), "ASUPeacockHall", "ASUCAPBuilding");
+        appalRoutes.addEdge(new Edge(10, "purple"), "ASUCAPBuilding", "ASUTechnologyCenter");
+        appalRoutes.addEdge(new Edge(10, "purple"), "ASUTechnologyCenter", "ASUConvocationCenter");
+        appalRoutes.addEdge(new Edge(10, "purple"), "ASUConvocationCenter", "HighlandAve");
+        appalRoutes.addEdge(new Edge(10, "purple"), "HighlandAve", "McDonaldsWellsFargo");
+        appalRoutes.addEdge(new Edge(10, "purple"), "McDonaldsWellsFargo", "WilsonDr");
+        appalRoutes.addEdge(new Edge(10, "purple"), "WilsonDr", "GreenwayCommons");
+        appalRoutes.addEdge(new Edge(10, "purple"), "GreenwayCommons", "GreenwayBusinessPark");
+        appalRoutes.addEdge(new Edge(10, "purple"), "GreenwayBusinessPark", "GreenwayRdParkingLot");
+        appalRoutes.addEdge(new Edge(10, "purple"), "GreenwayRdParkingLot", "MeadowViewDr");
+        appalRoutes.addEdge(new Edge(10, "purple"), "MeadowViewDr", "VillageAtMeadowView");
+        appalRoutes.addEdge(new Edge(10, "purple"), "VillageAtMeadowView", "MeadowViewDrAtWalgreens");
+        appalRoutes.addEdge(new Edge(10, "purple"), "MeadowViewDrAtWalgreens", "Applebees");
+        appalRoutes.addEdge(new Edge(10, "purple"), "Applebees", "VisitorsCenter");
+        appalRoutes.addEdge(new Edge(10, "purple"), "VisitorsCenter", "BooneTownHall");
+        appalRoutes.addEdge(new Edge(10, "purple"), "BooneTownHall", "ChinaBuffet");
+        appalRoutes.addEdge(new Edge(10, "purple"), "ChinaBuffet", "AppalachianPanhellenic");
+        appalRoutes.addEdge(new Edge(10, "purple"), "AppalachianPanhellenic", "KangarooExpress");
+        appalRoutes.addEdge(new Edge(10, "purple"), "KangarooExpress", "ASUMainEntrance");
+        appalRoutes.addEdge(new Edge(10, "purple"), "ASUMainEntrance", "ASUSkywalk");
+        appalRoutes.addEdge(new Edge(10, "purple"), "ASUSkywalk", "ASUPeacockHall");
+    }
+
+    // Creating the AppalCart route graph
+    public static void main(String[] args) {
+
+        // Transformer maps the edge name to its color
+        Transformer<Edge, Paint> edgeColor = new Transformer<Edge, Paint>() {
+            public Paint transform(Edge name) {
+                if (name.id.contains("teal")) return new Color(36, 226, 201); /*teal*/
+                else if (name.id.contains("silver")) return Color.DARK_GRAY;
+                else if (name.id.contains("gold")) return new Color(226, 182, 36); /*gold*/
+                else if (name.id.contains("purple")) return new Color(138, 29, 211); /* purple*/
+                return Color.RED;
+            }
+        };
+
+        //Sets the vertex label font
+        Transformer<String, Font> vertexFont = new Transformer<String, Font>() {
+            public Font transform(String label) {
+                Font font = new Font("Calibri", Font.BOLD, 20);
+                return font;
+            }
+        };
+
+        //Sets the vertex color
+        Transformer<String, Paint> vertexColor = new Transformer<String, Paint>() {
+            public Paint transform(String vertex) {
+                return Color.black;
+            }
+        };
+        Graph<String, Integer> appalRoutes = new SparseMultigraph<>();
+        System.out.println(appalRoutes.toString());
+        SimpleGraphView sgv = new SimpleGraphView(); //We create our graph in here
+        KKLayout layout = new KKLayout(sgv.appalRoutes);
+        VisualizationViewer<String, Edge> vv =
+                new VisualizationViewer<String, Edge>(layout);
+        // The Layout<V, E> is parameterized by the vertex and edge types
+        layout.setSize(new Dimension(500, 500)); // sets the initial size of the space
+        // The BasicVisualizationServer<V,E> is parameterized by the edge types
+        DefaultModalGraphMouse gm = new DefaultModalGraphMouse();
+        gm.setMode(ModalGraphMouse.Mode.TRANSFORMING);
+        vv.setGraphMouse(gm);
+        vv.setPreferredSize(new Dimension(1000, 1000)); //Sets the viewing area size
+        vv.getRenderContext().setEdgeDrawPaintTransformer(edgeColor);
+        vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
+        vv.getRenderContext().setVertexFontTransformer(vertexFont);
+        vv.getRenderContext().setVertexFillPaintTransformer(vertexColor);
+        JFrame frame = new JFrame("Simple Graph View");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(vv);
+        frame.pack();
+        frame.setVisible(true);
+
+    }
+
+    class Edge {
+        private int weight;
+        private String id;
+
+        public Edge(int weight, String route) {
+            this.id = route + edgeCount++; // This is defined in the outer class.
+            this.weight = weight;
         }
 
-        // Creating the AppalCart route graph
-        public static void main(String[] args) {
+        public int getWeight() {
+            return weight;
+        }
 
-            // Transformer maps the edge name to its color
-            Transformer<String,Paint> edgeColor = new Transformer<String,Paint>() {
-                public Paint transform(String name) {
-                    if(name.contains("teal")) return new Color(36, 226, 201); /*teal*/
-                    else if (name.contains("silver")) return Color.DARK_GRAY;
-                    else if (name.contains("gold")) return new Color(226,182, 36); /*gold*/
-                    else if (name.contains("purple")) return new Color(138, 29, 211); /* purple*/
-                    return Color.RED;
-                }
-            };
-            Graph<String, Integer> appalRoutes = new SparseMultigraph<>();
-            System.out.println(appalRoutes.toString());
-            SimpleGraphView sgv = new SimpleGraphView(); //We create our graph in here
-            // The Layout<V, E> is parameterized by the vertex and edge types
-            KKLayout layout = new KKLayout(sgv.appalRoutes);
-            layout.setSize(new Dimension(3000, 1600)); // sets the initial size of the space
-            // The BasicVisualizationServer<V,E> is parameterized by the edge types
-            BasicVisualizationServer<Integer, String> vv =
-                    new BasicVisualizationServer<Integer, String>(layout);
-            vv.setPreferredSize(new Dimension(3000, 1600)); //Sets the viewing area size
-            vv.getRenderContext().setEdgeDrawPaintTransformer(edgeColor);
-            vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
-            JFrame frame = new JFrame("Simple Graph View");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.getContentPane().add(vv);
-            frame.pack();
-            frame.setVisible(true);
-
+        public String toString() {
+            return id;
         }
 
     }
+}
