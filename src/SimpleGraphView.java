@@ -121,8 +121,7 @@ import java.util.Scanner;
         // Create a hash map
         hm = new HashMap();
 
-        //fill map
-
+        //fill hash map with times for each stop/route
         hm.put("tealCottagesBoone3", new int[]{26, 56, 41, 11});
         hm.put("tealCottagesBoone2", new int[]{27, 57, 42, 12});
         hm.put("tealCottagesBoone1", new int[]{28, 58, 43, 13});
@@ -137,6 +136,74 @@ import java.util.Scanner;
         hm.put("tealAppSouthApartments", new int[]{19, 49, 34, 4});
         hm.put("tealCasaRustica", new int[]{20, 50, 35, 5});
 
+        hm.put("silverASUPeacockHall",new int[]{33, 3});
+        hm.put("silverASUCAPBuilding", new int[]{34, 4});
+        hm.put("silverASUTechnologyCenter", new int[]{34, 4});
+        hm.put("silverASUConvocationCenter", new int[]{35, 5});
+        hm.put("silverAppSouthApartments", new int[]{36, 6});
+        hm.put("silverCasaRustica", new int[]{38, 8});
+        hm.put("silverNC105Crosswalk", new int[]{39, 9});
+        hm.put("silverPoplarHillDr", new int[]{39, 9});
+        hm.put("silverHeritageCourt", new int[]{40, 10});
+        hm.put("silverSpeedwayNC105", new int[]{40, 10});
+        hm.put("silverPoplarPoint", new int[]{41, 11});
+        hm.put("silverWesthavenApts", new int[]{42, 12});
+        hm.put("silverWhiteOakRd", new int[]{43, 13});
+        hm.put("silverCCCTISidewalk", new int[]{44, 14});
+        hm.put("silverCCCTINC105Bypass", new int[] {47, 17});
+        hm.put("silverHighlandCommons", new int[]{50, 20});
+        hm.put("silverSnaggyMountain", new int[]{51, 21});
+        hm.put("silverStudioWestApts", new int[]{52, 22});
+        hm.put("silverHighlandCrossing", new int[]{53, 23});
+        hm.put("silverAppalachianPanhellenic", new int[]{54, 24});
+        hm.put("silverASUMainEntrance", new int[]{56, 26});
+        hm.put("silverASUSkywalk", new int[]{57, 27});
+
+        hm.put("goldAppalachianHeights", new int[]{8, 38});
+        hm.put("goldGreenwoodLot", new int[]{9, 39});
+        hm.put("goldLivingLearningCenter", new int[]{11, 41});
+        hm.put("goldWalkerHall", new int[]{12, 42});
+        hm.put("goldDepotStKingSt", new int[]{13, 43});
+        hm.put("goldBooneTownHall", new int[]{14, 44});
+        hm.put("goldASUCollegeStStation", new int[]{50, 20});
+        hm.put("goldHowardStHardinStDanlBoone", new int[]{51, 21});
+        hm.put("goldASUHoeyHallAwning", new int[]{51, 21});
+        hm.put("goldHardinStDauphBlanLn", new int[]{52, 22});
+        hm.put("goldASUConvocationCenter", new int[]{53, 23});
+        hm.put("goldFacultySt", new int[]{54, 24});
+        hm.put("goldHighlandAve", new int[]{54, 24});
+        hm.put("goldASUMainEntrance", new int[]{56, 26});
+        hm.put("goldASUSkywalk", new int[]{56, 26});
+        hm.put("goldASUTrivetteHall", new int[]{57, 27});
+        hm.put("goldNewlandHall", new int[]{58, 28});
+        hm.put("goldASUEggersHall", new int[]{59, 29});
+        hm.put("goldASUJusticeHall", new int[]{0, 30});
+        hm.put("goldPeacockTrafficLight", new int[]{2, 32});
+        hm.put("goldRiversStDepotSt", new int[]{3, 33});
+        hm.put("goldWataugaCountyHumanServices", new int[]{4, 34});
+        hm.put("goldASUChildCare", new int[]{5, 35});
+        hm.put("goldASUAccessRd", new int[]{5, 36});
+
+        hm.put("purpleASUPeacockHall", new int[]{25, 55, 40, 10});
+        hm.put("purpleASUCAPBuilding", new int[]{26, 56, 41, 11});
+        hm.put("purpleASUTechnologyCenter", new int[]{27, 57, 42, 12});
+        hm.put("purpleASUConvocationCenter", new int[]{28, 58, 43, 13});
+        hm.put("purpleHighlandAve", new int[]{29, 59, 44, 14});
+        hm.put("purpleMcDonaldsWellsFargo", new int[]{30, 0, 45, 15});
+        hm.put("purpleChinaBuffet", new int[]{30, 0, 45, 15});
+        hm.put("purpleBooneTownHall", new int[]{31, 1, 46, 16});
+        hm.put("purpleVisitorsCenter", new int[]{32, 2, 47, 17});
+        hm.put("purpleApplebees", new int[]{32, 2, 47, 17});
+        hm.put("purpleMeadowViewDrAtWalgreens", new int[]{33, 3, 48, 18});
+        hm.put("purpleVillageAtMeadowView", new int[]{37, 7, 52, 22});
+        hm.put("purpleMeadowViewDrGreenwayRd", new int[]{41, 11, 56, 26});
+        hm.put("purpleGreenwayRdParkingLot", new int[]{42, 12, 57, 27});
+        hm.put("purpleGreenwayCommons", new int[]{44, 14, 59, 29});
+        hm.put("purpleWilsonDr", new int[]{45, 15, 0, 30});
+        hm.put("purpleAppalachianPanhellenic", new int[]{46, 16, 1, 31});
+        hm.put("purpleKangarooExpress", new int[]{47, 17, 2, 32});
+        hm.put("purpleASUMainEntrance", new int[]{48, 18, 3, 33});
+        hm.put("purpleASUSkywalk", new int[]{49, 19, 4, 34});
         }
 
     // Creating the AppalCart route graph
@@ -213,6 +280,10 @@ import java.util.Scanner;
                 String route = edge.id.replaceAll("[0-9]", "");
                 if (currentRoute == "") {
                     currentRoute = route;
+                    return edge.weight;
+                }
+                else if (currentRoute.equals(route))
+                {
                     return edge.weight;
                 }
                 else if (!currentRoute.equals(route)) {

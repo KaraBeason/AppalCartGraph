@@ -2,14 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="35c8c54e-e267-4e54-827a-d0468036cc35" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppalGraphFlow.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AppalCartGraph/SimpleGraphView$1.class" afterPath="$PROJECT_DIR$/out/production/AppalCartGraph/SimpleGraphView$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AppalCartGraph/SimpleGraphView$2.class" afterPath="$PROJECT_DIR$/out/production/AppalCartGraph/SimpleGraphView$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AppalCartGraph/SimpleGraphView$3.class" afterPath="$PROJECT_DIR$/out/production/AppalCartGraph/SimpleGraphView$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AppalCartGraph/SimpleGraphView$4.class" afterPath="$PROJECT_DIR$/out/production/AppalCartGraph/SimpleGraphView$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AppalCartGraph/SimpleGraphView$Edge.class" afterPath="$PROJECT_DIR$/out/production/AppalCartGraph/SimpleGraphView$Edge.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AppalCartGraph/SimpleGraphView.class" afterPath="$PROJECT_DIR$/out/production/AppalCartGraph/SimpleGraphView.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SimpleGraphView.java" afterPath="$PROJECT_DIR$/src/SimpleGraphView.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -29,10 +21,42 @@
       <file leaf-file-name="SimpleGraphView.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SimpleGraphView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="559">
-              <caret line="35" column="22" lean-forward="true" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+            <state relative-caret-position="8044">
+              <caret line="206" column="9" lean-forward="true" selection-start-line="206" selection-start-column="9" selection-end-line="206" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DijkstraDistance.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/OneDrive/Documents/ASU SPRING/Graph Theory/jung2-2_0_1/jung-algorithms-2.0.1.jar!/edu/uci/ics/jung/algorithms/shortestpath/DijkstraDistance.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AbstractGraph.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/OneDrive/Documents/ASU SPRING/Graph Theory/jung2-2_0_1/jung-graph-impl-2.0.1.jar!/edu/uci/ics/jung/graph/AbstractGraph.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="384">
+              <caret line="185" column="0" lean-forward="false" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Pair.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/OneDrive/Documents/ASU SPRING/Graph Theory/jung2-2_0_1/jung-api-2.0.1.jar!/edu/uci/ics/jung/graph/util/Pair.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="212">
+              <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+              <folding>
+                <element signature="e#1933#1934#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -41,12 +65,14 @@
       <file leaf-file-name="DirectedSparseMultigraph.class" pinned="false" current-in-tab="false">
         <entry file="jar://$USER_HOME$/OneDrive/Documents/ASU SPRING/Graph Theory/jung2-2_0_1/jung-graph-impl-2.0.1.jar!/edu/uci/ics/jung/graph/DirectedSparseMultigraph.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
+            <state relative-caret-position="172">
               <caret line="226" column="0" lean-forward="false" selection-start-line="226" selection-start-column="0" selection-end-line="226" selection-end-column="0" />
               <folding>
                 <element signature="e#1544#1545#0" expanded="true" />
                 <element signature="e#1601#1602#0" expanded="true" />
                 <element signature="e#7097#7098#0" expanded="true" />
+                <element signature="e#7503#7504#0" expanded="true" />
+                <element signature="e#7552#7553#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -399,7 +425,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32927853" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884097" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -416,7 +442,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5360738" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40296495" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -464,12 +490,30 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SimpleGraphView.java</url>
-          <line>220</line>
+          <line>292</line>
           <properties />
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/SimpleGraphView.java</url>
+          <line>295</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/SimpleGraphView.java</url>
+          <line>282</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/SimpleGraphView.java</url>
+          <line>284</line>
+          <properties />
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="2" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -508,13 +552,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/OneDrive/Documents/ASU SPRING/Graph Theory/jung2-2_0_1/jung-graph-impl-2.0.1.jar!/edu/uci/ics/jung/graph/AbstractGraph.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="190" column="0" lean-forward="false" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/out/production/AppalCartGraph/AppalCartGraph.class" />
     <entry file="file://$PROJECT_DIR$/src/AppalCartGraph.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -545,22 +582,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/OneDrive/Documents/ASU SPRING/Graph Theory/jung2-2_0_1/jung-api-2.0.1.jar!/edu/uci/ics/jung/graph/util/Pair.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding>
+            <element signature="e#1933#1934#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/OneDrive/Documents/ASU SPRING/Graph Theory/jung2-2_0_1/jung-graph-impl-2.0.1.jar!/edu/uci/ics/jung/graph/AbstractGraph.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="185" column="0" lean-forward="false" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$USER_HOME$/OneDrive/Documents/ASU SPRING/Graph Theory/jung2-2_0_1/jung-graph-impl-2.0.1.jar!/edu/uci/ics/jung/graph/DirectedSparseMultigraph.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
+        <state relative-caret-position="172">
           <caret line="226" column="0" lean-forward="false" selection-start-line="226" selection-start-column="0" selection-end-line="226" selection-end-column="0" />
           <folding>
             <element signature="e#1544#1545#0" expanded="true" />
             <element signature="e#1601#1602#0" expanded="true" />
             <element signature="e#7097#7098#0" expanded="true" />
+            <element signature="e#7503#7504#0" expanded="true" />
+            <element signature="e#7552#7553#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/OneDrive/Documents/ASU SPRING/Graph Theory/jung2-2_0_1/jung-algorithms-2.0.1.jar!/edu/uci/ics/jung/algorithms/shortestpath/DijkstraDistance.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SimpleGraphView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="35" column="22" lean-forward="true" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+        <state relative-caret-position="8044">
+          <caret line="206" column="9" lean-forward="true" selection-start-line="206" selection-start-column="9" selection-end-line="206" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
